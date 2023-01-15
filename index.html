@@ -10,10 +10,14 @@
   </head>
 
   <body>
+
+    <!-- Link to highscores page -->
     <div class="scores"><a href="highscores.html">View Highscores</a></div>
 
+    <!-- Timer fuction -->
     <div class="timer">Time: <span id="time">0</span></div>
 
+<!-- Start page -->
     <div class="wrapper">
       <div id="start-screen" class="start">
         <h1>Coding Quiz Challenge</h1>
@@ -22,14 +26,19 @@
           limit. Keep in mind that incorrect answers will penalize your
           score/time by ten seconds!
         </p>
+
+        <!-- Start button -->
         <button id="start">Start Quiz</button>
       </div>
 
+
+      <!-- Div elements to insert each question into - all goes from one screen -->
       <div id="questions" class="hide">
         <h2 id="question-title"></h2>
         <div id="choices" class="choices"></div>
       </div>
 
+      <!-- Final screen: Enter and submit highscore -->
       <div id="end-screen" class="hide">
         <h2>All done!</h2>
         <p>Your final score is <span id="final-score"></span>.</p>
@@ -39,6 +48,7 @@
         </p>
       </div>
 
+      <!-- Feedback code: Telling the user whether their choice was correct on incorrect -->
       <div id="feedback" class="feedback hide"></div>
     </div>
 
