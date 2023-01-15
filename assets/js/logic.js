@@ -3,44 +3,51 @@
 // Iterate over object of questions in a for loop to dispaly on the page
 
 
-// On click of 'Start' button, 
+
+// GLOBAL VARIABLES: Creating a variable for the start button and screens
 
 var startButton = document.querySelector("#start");
 var startScreen = document.querySelector("#start-screen");
+var questionsScreen = document.querySelector("#questions")
 
-
+// Adding event listenr to hide start screen and show questions on click
 startButton.addEventListener("click", hideStartScreen);
 startButton.addEventListener("click", showQuestionScreen);
 
 
-startButton.addEventListener("click" ,() => { 
-    hideStartScreen();
-    showQuestionScreen();
-});
-
-// Hide start screen on click function
+// FUNCTION: to hide start screen
 
 function hideStartScreen() {
 startScreen.remove();
 }
-// Bring up question screen function
+// FUNCTION: to bring up the questions screen 
 
 function showQuestionScreen(){
-    var questionScreen = document.getElementById("#questions");
-    if (questionScreen.style.display === "none") {
-        questionScreen.style.display = "block";
-    } else {
-        questionScreen.style.display = "none";
-    }
-  }
 
-//   const invokeMe = () => console.log('I live here outside the scope');
-//   const alsoInvokeMe = () => console.log('I also live outside the scope'); 
-  
-//   element.addEventListener('event',() => {    
-//        invokeMe();
-//        alsoInvokeMe();    
-//   });
+// Make divs visible
+    questionsScreen.classList.remove('hide');
+    questionsScreen.classList.add('show');
+
+// Go through object an insert text content 
+ var questionTitle = document.querySelector("#question-title");
+
+
+ 
+ questionTitle.textContent = JSON.stringify(quizQuestions[0].question);
+
+
+
+
+// Add question title in the h2 (ID question-title)
+
+
+// Add choices 4 new buttons (styling will be auto applied)
+
+// Add button class to the inserted choices
+    }
+
+
+
 
 // div id=start-screen disappears
 
