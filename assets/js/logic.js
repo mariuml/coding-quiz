@@ -13,6 +13,7 @@ var wrongAnswer = document.getElementById("wrong");
 var correctAnswer = document.getElementById("correct");
 var currentQuestion = 0;
 var timerElement = document.getElementById("time");
+var timeLeft = 75;
 
 // Adding event listener to hide start screen and show questions on click
 startButton.addEventListener("click", showFirstQuestionScreen);
@@ -23,8 +24,7 @@ startButton.addEventListener("click", timerCountdown);
 
 //  Add a timer counting down from 75 seconds
 function timerCountdown() {
-    var timeLeft = 75;
-  
+    
     var timeInterval = setInterval(function () {
       // As long as 'timeleft is great than 1
   
@@ -33,9 +33,7 @@ function timerCountdown() {
         timerElement.textContent = timeLeft;
         timeLeft--;
       } 
-      else if (clickedValue !== quizQuestions[currentQuestion].answer){
-      console.log("This works");
-      }
+     
       else {
         timerElement.textContent = " ";
         // Hide question screen
@@ -129,5 +127,10 @@ function nextQuestion(event) {
     setTimeout(function () {
       wrongAnswer.classList.add("hide");
     }, 500);
+// Decrementing the timer by 10 seconds if wrong answer is selected
+
+    timeLeft = timeLeft-10;
+
+
   }
 }
