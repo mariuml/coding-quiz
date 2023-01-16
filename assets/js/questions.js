@@ -4,10 +4,10 @@ var quizQuestions = [
 
 {   
     question: "Arrays in Javascript can be used to store _____.",
-    choice: ["Numbers and strings",
-    "Other arrays", 
-    "Booleans", 
-    "All of the above"],
+    choice: ["1. Numbers and strings",
+    "2. Other arrays", 
+    "3. Booleans", 
+    "4. All of the above"],
     answer: "All of the above",
     },
 

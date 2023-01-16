@@ -8,7 +8,9 @@
 
 var startButton = document.querySelector("#start");
 var startScreen = document.querySelector("#start-screen");
-var questionsScreen = document.querySelector("#questions")
+var questionsScreen = document.querySelector("#questions");
+var choicesButtons = document.querySelector("#choices");
+var buttons = document.querySelectorAll("button");
 
 // Adding event listenr to hide start screen and show questions on click
 startButton.addEventListener("click", hideStartScreen);
@@ -28,36 +30,32 @@ function showQuestionScreen(){
     questionsScreen.classList.remove('hide');
     questionsScreen.classList.add('show');
 
-// Go through object an insert text content 
+// Adding questions to the screen
  var questionTitle = document.querySelector("#question-title");
-
-
- 
- questionTitle.textContent = JSON.stringify(quizQuestions[0].question);
-
-
-
-
-// Add question title in the h2 (ID question-title)
-
-
+questionTitle.textContent = (quizQuestions[0].question);
 // Add choices 4 new buttons (styling will be auto applied)
 
-// Add button class to the inserted choices
+// Showing the buttons
+choicesButtons.classList.remove('hide');
+choicesButtons.classList.add('show');
+
+// Adding text to the buttons
+
+for (var i=0; i< 4; i++) {
+    buttons[i + 1].textContent = (quizQuestions[0].choice[i]);
+}
     }
 
 
+// FUNCTION: Showing the next question - call this on click of a correct answer 
+// if answer element is clicked call this function - need to add answer element
+// as one of the buttons 
+
+// function showNextQuestion() {
+
+//     for(i=0; i > 1 )
+//     questionTitle.textContent = JSON.stringify(quizQuestions[i].question);
+// }
 
 
-// div id=start-screen disappears
 
-
-// div id=questions appears
-
-
-// In div ID=questions insert:
-
-// question title into ID=question title
-
-
-// multiple choices added as list items in the div ID=choices
