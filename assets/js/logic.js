@@ -12,10 +12,42 @@ var endScreen = document.getElementById("end-screen");
 var wrongAnswer = document.getElementById("wrong");
 var correctAnswer = document.getElementById("correct");
 var currentQuestion = 0;
+var timerElement = document.getElementById("time");
 
-
-// Adding event listenr to hide start screen and show questions on click
+// Adding event listener to hide start screen and show questions on click
 startButton.addEventListener("click", showFirstQuestionScreen);
+startButton.addEventListener("click", timerCountdown);
+
+
+// FUNCTION: Timer
+
+//  Add a timer counting down from 75 seconds
+function timerCountdown() {
+    var timeLeft = 75;
+  
+    var timeInterval = setInterval(function () {
+      // As long as 'timeleft is great than 1
+  
+      if (timeLeft > 1) {
+        // Adding text of timerElement to show the remaining seconds
+        timerElement.textContent = timeLeft;
+        timeLeft--;
+      } 
+      else if (clickedValue !== quizQuestions[currentQuestion].answer){
+      console.log("This works");
+      }
+      else {
+        timerElement.textContent = " ";
+        // Hide question screen
+        questionsScreen.classList.remove("show");
+        questionsScreen.classList.add("hide");
+  
+        // Show end screen
+        endScreen.classList.remove("hide");
+        endScreen.classList.add("show");
+      }
+    }, 1000);
+  }
 
 
 // FUNCTION: Add answers to buttons - to reuse
@@ -26,7 +58,6 @@ function addAnswers(answerNumber) {
 
   for (var i = 0; i < 4; i++) {
     buttons[i + 1].textContent = quizQuestions[answerNumber].choice[i];
-   
   }
 }
 
@@ -37,7 +68,6 @@ function addAnswers(answerNumber) {
 function addQuestions(questionNumber) {
   questionTitle.textContent = quizQuestions[questionNumber].question;
 }
-
 
 // FUNCTION: to bring up the first question screen
 
@@ -57,57 +87,47 @@ function showFirstQuestionScreen() {
   addAnswers(currentQuestion);
 }
 
-
-// FUNCTION: Hide feedback after a given amount of time
-
-
-
-
-
-
 // FUNCTION: Next question
 
-function nextQuestion (event) {
+function nextQuestion(event) {
+  if (currentQuestion >= 4) {
+    // Hide question screen
+    questionsScreen.classList.remove("show");
+    questionsScreen.classList.add("hide");
 
-if(currentQuestion >= 4) {
+    // Show end screen
+    endScreen.classList.remove("hide");
+    endScreen.classList.add("show");
+  }
 
-// Hide question screen
-questionsScreen.classList.remove("show");
-questionsScreen.classList.add("hide");
-
-// Show end screen
-endScreen.classList.remove("hide");
-endScreen.classList.add("show");
+  var clickedValue = event.target.textContent;
 
 
+
+//    IF STATEMENTS: Testing if an answer is correct or incorrect
+
+  if (clickedValue === quizQuestions[currentQuestion].answer) {
+    currentQuestion++;
+    addAnswers(currentQuestion);
+    addQuestions(currentQuestion);
+
+    correctAnswer.classList.remove("hide");
+
+    // Hiding the feedback after time duration
+    setTimeout(function () {
+      correctAnswer.classList.add("hide");
+    }, 500);
+
+    // Show correct, then hide correct
+  } else {
+    currentQuestion++;
+    addAnswers(currentQuestion);
+    addQuestions(currentQuestion);
+    wrongAnswer.classList.remove("hide");
+
+    // Hiding feedback after time duration
+    setTimeout(function () {
+      wrongAnswer.classList.add("hide");
+    }, 500);
+  }
 }
-
-
-    var clickedValue = event.target.textContent; 
-  
-    if(clickedValue === quizQuestions[currentQuestion].answer){
-       currentQuestion++;
-        addAnswers(currentQuestion);
-        addQuestions(currentQuestion);
-
-        correctAnswer.classList.remove("hide");
-
-        // Hiding the feedback after one second
-        setTimeout(function(){
-            correctAnswer.classList.add("hide"); }, 1000);
-
-        // Show correct, then hide correct 
-    }
-    else {
-        currentQuestion++;
-        addAnswers(currentQuestion);
-        addQuestions(currentQuestion);
-        wrongAnswer.classList.remove("hide");
-       
-        // Hiding feedback after one second
-        setTimeout(function(){
-            wrongAnswer.classList.add("hide"); }, 1000);
-    }
-}
-
-// If statement if the current question > number of questions 
