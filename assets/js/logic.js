@@ -1,6 +1,4 @@
-// Iterate over object of questions in a for loop to dispaly on the page
-
-// GLOBAL VARIABLES: Creating a variable for the start button and screens
+// GLOBAL VARIABLES: 
 
 var startButton = document.getElementById("start");
 var startScreen = document.getElementById("start-screen");
@@ -14,6 +12,7 @@ var correctAnswer = document.getElementById("correct");
 var currentQuestion = 0;
 var timerElement = document.getElementById("time");
 var timeLeft = 75;
+var highscoreInput = document.getElementById("initials");
 
 // Adding event listener to hide start screen and show questions on click
 startButton.addEventListener("click", showFirstQuestionScreen);
@@ -134,3 +133,11 @@ function nextQuestion(event) {
 
   }
 }
+
+//  Adding highscores to local storage 
+
+//  Save initial input to end screen to local storage  - form submit?
+
+// Append() initials to highscores ID from local storage
+
+// https://stackoverflow.com/questions/10333230/save-input-data-to-localstorage-on-button-click/10333318#10333318?newreg=56398fd981694e0db8d7fa3555be10a4
