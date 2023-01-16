@@ -2,22 +2,17 @@
 
 // GLOBAL VARIABLES: Creating a variable for the start button and screens
 
-var startButton = document.querySelector("#start");
-var startScreen = document.querySelector("#start-screen");
-var questionsScreen = document.querySelector("#questions");
-var choicesButtons = document.querySelector("#choices");
+var startButton = document.getElementById("start");
+var startScreen = document.getElementById("start-screen");
+var questionsScreen = document.getElementById("questions");
+var choicesButtons = document.getElementById("choices");
 var buttons = document.querySelectorAll("button");
-var questionTitle = document.querySelector("#question-title");
-var buttonSelection = 0;
-var questionSelection = 0;
-var wrongAnswer = document.getElementById("#wrong");
-var correctAnswer = document.getElementById("#correct");
+var questionTitle = document.getElementById("question-title");
+var endScreen = document.getElementById("end-screen");
+var wrongAnswer = document.getElementById("wrong");
+var correctAnswer = document.getElementById("correct");
+var currentQuestion = 0;
 
-// Button variables
-var buttonOne = document.querySelector("#button-1");
-var buttonTwo = document.querySelector("#button-2");
-var buttonThree = document.querySelector("#button-3");
-var buttonFour = document.querySelector("#button-4")
 
 // Adding event listenr to hide start screen and show questions on click
 startButton.addEventListener("click", showFirstQuestionScreen);
@@ -31,19 +26,20 @@ function addAnswers(answerNumber) {
 
   for (var i = 0; i < 4; i++) {
     buttons[i + 1].textContent = quizQuestions[answerNumber].choice[i];
-    buttons[i + 1].addEventListener("click", function () {
-    });
+   
   }
 }
 
 //  FUNCTION: to show the next question - to reuse
+
+// BUG: Showing an error / undefined for the last question - Could take to ask BCS?
 
 function addQuestions(questionNumber) {
   questionTitle.textContent = quizQuestions[questionNumber].question;
 }
 
 
-// FUNCTION: to bring up the questions screen
+// FUNCTION: to bring up the first question screen
 
 function showFirstQuestionScreen() {
   // Hide start screen
@@ -55,69 +51,48 @@ function showFirstQuestionScreen() {
 
   // Calling the function - Adding question 1 to the screen
 
-  addQuestions(0);
+  addQuestions(currentQuestion);
 
   // Calling the function - Adding question 1 answers to the screen
-  addAnswers(0);
+  addAnswers(currentQuestion);
 }
 
-// Event listeners for buttons
-buttonOne.addEventListener("click", function () {
-    buttonSelection = 1;
-    questionSelection ++;
-    return buttonSelection;
-    return questionSelection;
-   
-   });
-   
-   buttonTwo.addEventListener("click", function () {
-     buttonSelection = 2;
-     questionSelection ++;
-     return buttonSelection;
-     return questionSelection;
-   });
-   
-   buttonThree.addEventListener("click", function () {
-       buttonSelection = 3;
-       questionSelection ++; 
-       return buttonSelection;
-       return questionSelection;
-     });
-   
-     buttonFour.addEventListener("click", function () {
-       buttonSelection = 4;
-       questionSelection ++;
-       return buttonSelection;
-       return questionSelection;
-     });
-   
-     console.log(buttonSelection);
-     console.log(questionSelection);
-   
-   // Question 1 logic:
-   
-   if (buttonSelection = 4) {
-       // Feedback 'Correct'
-       console.log("Correct");
+// FUNCTION: Next question
 
-//  Display feedback
+function nextQuestion (event) {
 
-correctAnswer.classList.remove("hide");
-correctAnswer.classList.add("show");
+if(currentQuestion >= 4) {
+
+// Hide question screen
+questionsScreen.classList.remove("show");
+questionsScreen.classList.add("hide");
+
+// Show end screen
+endScreen.classList.remove("hide");
+endScreen.classList.add("show");
 
 
-       // Add to score
-       // addAnswers(questionSelection);
-       // addQuestions(questionSelection);
-     } else {
-       // Feedback 'Incorrect'
-// Display feedback
-wrongAnswer.classList.remove("hide");
-wrongAnswer.classList.add("show");
+}
 
-       // Takes away from timer
-       // addAnswers(questionSelection);
-       // addQuestions(questionSelection);
-     }
-     
 
+    var clickedValue = event.target.textContent; 
+  
+    if(clickedValue === quizQuestions[currentQuestion].answer){
+        console.log("This is correct!");
+        currentQuestion++;
+        addAnswers(currentQuestion);
+        addQuestions(currentQuestion);
+
+        // Show correct, then hide correct 
+    }
+    else {
+        console.log("This is incorrect!");
+        currentQuestion++;
+        addAnswers(currentQuestion);
+        addQuestions(currentQuestion);
+
+        // Show incorrect, then hide incorrect
+    }
+}
+
+// If statement if the current question > number of questions 
