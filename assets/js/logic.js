@@ -11,51 +11,53 @@ var startScreen = document.querySelector("#start-screen");
 var questionsScreen = document.querySelector("#questions");
 var choicesButtons = document.querySelector("#choices");
 var buttons = document.querySelectorAll("button");
+var questionTitle = document.querySelector("#question-title");
 
 // Adding event listenr to hide start screen and show questions on click
-startButton.addEventListener("click", hideStartScreen);
-startButton.addEventListener("click", showQuestionScreen);
+startButton.addEventListener("click", showFirstQuestionScreen);
 
 
-// FUNCTION: to hide start screen
+// FUNCTION: Add answers to buttons - to reuse 
 
-function hideStartScreen() {
-startScreen.remove();
-}
+function addAnswers (answerNumber) {
+    choicesButtons.classList.remove('hide');
+    choicesButtons.classList.add('show');
+    
+    for (var i=0; i< 4; i++) {
+        buttons[i + 1].textContent = (quizQuestions[answerNumber].choice[i]);
+    }
+        }
+    
+    
+    //  FUNCTION: to show the next question - to reuse
+    
+    function addQuestions(questionNumber) {
+        questionTitle.textContent = (quizQuestions[questionNumber].question);
+    }
+    
+
 // FUNCTION: to bring up the questions screen 
 
-function showQuestionScreen(){
+function showFirstQuestionScreen(){
+
+    // Hide start screen
+    startScreen.remove();
 
 // Make divs visible
     questionsScreen.classList.remove('hide');
     questionsScreen.classList.add('show');
 
-// Adding questions to the screen
- var questionTitle = document.querySelector("#question-title");
-questionTitle.textContent = (quizQuestions[0].question);
-// Add choices 4 new buttons (styling will be auto applied)
+// Calling the function - Adding question 1 to the screen
+ 
+addQuestions(0);
 
-// Showing the buttons
-choicesButtons.classList.remove('hide');
-choicesButtons.classList.add('show');
+// Calling the function - Adding question 1 answers to the screen
+addAnswers(0);
 
-// Adding text to the buttons
-
-for (var i=0; i< 4; i++) {
-    buttons[i + 1].textContent = (quizQuestions[0].choice[i]);
 }
-    }
 
+// When correct answer is clicked, go to next question - can we create logic to reuse??
 
-// FUNCTION: Showing the next question - call this on click of a correct answer 
-// if answer element is clicked call this function - need to add answer element
-// as one of the buttons 
-
-// function showNextQuestion() {
-
-//     for(i=0; i > 1 )
-//     questionTitle.textContent = JSON.stringify(quizQuestions[i].question);
-// }
-
+// Trigger this function if user selection === correct answer 
 
 
