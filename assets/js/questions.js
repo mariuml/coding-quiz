@@ -14,7 +14,7 @@ var quizQuestions = [
     {
         question: "A very useful debugging tool used during development and debugging front printing content to the debugger is:",
         choice: ["1. JavaScript",
-        "2. Temrinal/bash", 
+        "2. Terminal/bash", 
         "3. For loops", 
         "4. console.log"],
         answer: "4. console.log",

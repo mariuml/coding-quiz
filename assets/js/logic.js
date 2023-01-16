@@ -57,6 +57,14 @@ function showFirstQuestionScreen() {
   addAnswers(currentQuestion);
 }
 
+
+// FUNCTION: Hide feedback after a given amount of time
+
+
+
+
+
+
 // FUNCTION: Next question
 
 function nextQuestion (event) {
@@ -78,20 +86,27 @@ endScreen.classList.add("show");
     var clickedValue = event.target.textContent; 
   
     if(clickedValue === quizQuestions[currentQuestion].answer){
-        console.log("This is correct!");
-        currentQuestion++;
+       currentQuestion++;
         addAnswers(currentQuestion);
         addQuestions(currentQuestion);
+
+        correctAnswer.classList.remove("hide");
+
+        // Hiding the feedback after one second
+        setTimeout(function(){
+            correctAnswer.classList.add("hide"); }, 1000);
 
         // Show correct, then hide correct 
     }
     else {
-        console.log("This is incorrect!");
         currentQuestion++;
         addAnswers(currentQuestion);
         addQuestions(currentQuestion);
-
-        // Show incorrect, then hide incorrect
+        wrongAnswer.classList.remove("hide");
+       
+        // Hiding feedback after one second
+        setTimeout(function(){
+            wrongAnswer.classList.add("hide"); }, 1000);
     }
 }
 
