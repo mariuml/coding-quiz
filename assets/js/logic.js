@@ -16,10 +16,10 @@ var submitButton = document.getElementById("submit");
 var clearScoresButton = document.getElementById("clear");
 var timerElement = document.getElementById("time");
 var timeLeft = 75;
-
-
-// Highscores list
 var highscoreArray= [];
+
+
+
 
 // Adding event listener to hide start screen and show questions on click
 startButton.addEventListener("click", showFirstQuestionScreen);
@@ -32,7 +32,7 @@ function timerCountdown() {
 
   var timeInterval = setInterval(function () {
     // As long as 'timeleft is greater than 1
-    if (timeLeft > 1) {
+    if (timeLeft > 0) {
       // Adding text of timerElement to show the remaining seconds
       timerElement.textContent = timeLeft;
       timeLeft--;
@@ -44,6 +44,8 @@ function timerCountdown() {
   // Show end screen
   endScreen.classList.remove("hide");
   endScreen.classList.add("show");
+
+
 
       // Stop the timer
   clearInterval(timeInterval);
@@ -95,8 +97,6 @@ function showFirstQuestionScreen() {
 function nextQuestion(event) {
   if (currentQuestion >= 4) {
 
-
-
     // Hide question screen
     questionsScreen.classList.remove("show");
     questionsScreen.classList.add("hide");
@@ -105,8 +105,8 @@ function nextQuestion(event) {
     endScreen.classList.remove("hide");
     endScreen.classList.add("show");
 
-    // // Hide timer
-    // timerElement.classList.add("hide");
+    // Hide timer
+    timerElement.classList.add("hide");
   }
 
   var clickedValue = event.target.textContent;
@@ -142,10 +142,8 @@ function nextQuestion(event) {
   }
 }
 
-// ADDING SCORE: Final score display - BUG: Doesn't show final score - if we manage to stop the timer we can
-// put this in the else stayement 
+// ADDING SCORE: Final score display 
 
-// Setting final score to final score element
 finalScoreElement.textContent = timeLeft;
 
 //  LOCAL STORAGE: Adding highscores initials to local storage on click of submit button
@@ -168,8 +166,6 @@ window.location.assign("highscores.html");
 
 
 });
-
-
 
 
 
