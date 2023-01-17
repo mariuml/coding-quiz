@@ -1,6 +1,6 @@
 // Parsing array of scores from local storage
 
-JSON.parse(window.localStorage.getItem('highscoreArray'));
+var highscoreArray = JSON.parse(window.localStorage.getItem('highscoreArray'));
 
 //  Displaying the array on the page 
 
@@ -8,10 +8,26 @@ JSON.parse(window.localStorage.getItem('highscoreArray'));
 
 var highscoreOrderedList = document.getElementById("highscores");
 
-// Create ordered list items
-var li1 = document.createElement("li");
-var li2 = document.createElement("li");
-var li3 = document.createElement("li");
-var li4 = document.createElement("li");
+displayHighscores();
 
-//  Append list item to 
+function displayHighscores() {
+
+    for (var i=0; i < highscoreArray.length -1; i++) {
+
+// creating variables store scores and initials 
+var score = highscoreArray[i];
+var initials = highscoreArray[i+1]
+
+ // create a li element (list item) that we will append to our list later
+ var li = document.createElement("li"); 
+
+//  Setting text content for li items
+li.textContent = initials + " - " + score;
+
+// Append list item
+highscoreOrderedList.appendChild(li);
+
+
+}
+
+}

@@ -150,8 +150,6 @@ finalScoreElement.textContent = timeLeft;
 
 //  LOCAL STORAGE: Adding highscores initials to local storage on click of submit button
 
-
-
 // Saving initials and score to local storage
 submitButton.addEventListener("click", function () {
 
