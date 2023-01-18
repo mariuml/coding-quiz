@@ -14,12 +14,14 @@ function displayHighscores() {
 
     for (var i=0; i < highscoreArray.length -1; i++) {
 
+ // create a li element (list item) that we will append to our list later
+ var li = document.createElement("li"); 
+
 // creating variables store scores and initials 
 var score = highscoreArray[i];
 var initials = highscoreArray[i+1]
 
- // create a li element (list item) that we will append to our list later
- var li = document.createElement("li"); 
+
 
 //  Setting text content for li items
 li.textContent = initials + " - " + score;
