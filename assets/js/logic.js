@@ -16,10 +16,7 @@ var submitButton = document.getElementById("submit");
 var clearScoresButton = document.getElementById("clear");
 var timerElement = document.getElementById("time");
 var timeLeft = 75;
-var highscoreArray= [];
-
-
-
+var highscoreArray = [];
 
 // Adding event listener to hide start screen and show questions on click
 startButton.addEventListener("click", showFirstQuestionScreen);
@@ -29,7 +26,6 @@ startButton.addEventListener("click", timerCountdown);
 
 //  Add a timer counting down from 75 seconds
 function timerCountdown() {
-
   var timeInterval = setInterval(function () {
     // As long as 'timeleft is greater than 1
     if (timeLeft > 0) {
@@ -37,31 +33,27 @@ function timerCountdown() {
       timerElement.textContent = timeLeft;
       timeLeft--;
     } else {
-  // Hide question screen
-  questionsScreen.classList.remove("show");
-  questionsScreen.classList.add("hide");
+      // Hide question screen
+      questionsScreen.classList.remove("show");
+      questionsScreen.classList.add("hide");
 
-  // Show end screen
-  endScreen.classList.remove("hide");
-  endScreen.classList.add("show");
+      // Show end screen
+      endScreen.classList.remove("hide");
+      endScreen.classList.add("show");
 
-  
-// Save the time
+      // Save the time
 
-timeLeft = timeLeft;
+      timeLeft = timeLeft;
 
       // Stop the timer
-  clearInterval(timeInterval);
-
-    
+      clearInterval(timeInterval);
     }
   }, 1000);
 }
 
-// ADDING SCORE: Final score display 
+// ADDING SCORE: Final score display
 
 finalScoreElement.textContent = timeLeft;
-
 
 // FUNCTION: Add answers to buttons - to reuse
 
@@ -104,7 +96,6 @@ function showFirstQuestionScreen() {
 
 function nextQuestion(event) {
   if (currentQuestion >= 3) {
-
     // Hide question screen
     questionsScreen.classList.remove("show");
     questionsScreen.classList.add("hide");
@@ -150,28 +141,24 @@ function nextQuestion(event) {
   }
 }
 
-
-
 //  LOCAL STORAGE: Adding highscores initials to local storage on click of submit button
 
 // Saving initials and score to local storage
 submitButton.addEventListener("click", function () {
-
   //  Create variables to store final scores and initials
   var finalScore = finalScoreElement.textContent;
   var initials = initialsInput.value;
-  
+
+
+
   // Push this into highscores array
-highscoreArray.push(finalScore, initials);
+  highscoreArray.push(finalScore, initials);
 
-// Save the array into local storage, stringify
-localStorage.setItem('highscoreArray', JSON.stringify(highscoreArray));
+  // Save the array into local storage, stringify
+  localStorage.setItem("highscoreArray", JSON.stringify(highscoreArray));
 
-// Redirecting to highscore page
-window.location.assign("highscores.html");
-
-
+  // Redirecting to highscore page
+  window.location.assign("highscores.html");
 });
-
 
 
