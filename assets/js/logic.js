@@ -45,7 +45,10 @@ function timerCountdown() {
   endScreen.classList.remove("hide");
   endScreen.classList.add("show");
 
+  
+// Save the time
 
+timeLeft = timeLeft;
 
       // Stop the timer
   clearInterval(timeInterval);
@@ -54,6 +57,11 @@ function timerCountdown() {
     }
   }, 1000);
 }
+
+// ADDING SCORE: Final score display 
+
+finalScoreElement.textContent = timeLeft;
+
 
 // FUNCTION: Add answers to buttons - to reuse
 
@@ -142,9 +150,7 @@ function nextQuestion(event) {
   }
 }
 
-// ADDING SCORE: Final score display 
 
-finalScoreElement.textContent = timeLeft;
 
 //  LOCAL STORAGE: Adding highscores initials to local storage on click of submit button
 
