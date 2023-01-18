@@ -103,7 +103,7 @@ function showFirstQuestionScreen() {
 // FUNCTION: Next question
 
 function nextQuestion(event) {
-  if (currentQuestion >= 4) {
+  if (currentQuestion >= 3) {
 
     // Hide question screen
     questionsScreen.classList.remove("show");
