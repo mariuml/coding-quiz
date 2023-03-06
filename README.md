@@ -12,7 +12,7 @@ I learnt more about how Javascript and the DOM opens up a whole new realm of fun
 
 ## Usage
 
-The quiz has been deployed at: (INSERT LINK)
+The quiz has been deployed at: https://mariuml.github.io/coding-quiz/
 
 Please follow the link to view the final version. Once on the landing page, click start quiz and you will be presented with a range of multiple choice questions to test your coding knowledge. 
 
